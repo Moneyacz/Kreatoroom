@@ -1,4 +1,5 @@
 const config = require('../configs/database');
+const path = require('path');
 const mysql = require('mysql');
 const pool = mysql.createPool(config);
 
@@ -7,8 +8,10 @@ pool.on('error',(err)=> {
 });
 
 module.exports ={
+    //this is a login page routing example, needs further research
     getLoginPage(req, res){
-        res.render('login'); //need to edit more
+        const loginPagePath = path.join(__dirname, '../views/login-page.html');
+        res.sendFile(loginPagePath);
     },
     postLoginData(req, res){
         const data = {
