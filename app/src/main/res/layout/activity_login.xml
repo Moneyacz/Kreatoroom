@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".sign.LoginActivity"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="@color/green_base">
 
     <ImageView
         android:layout_width="120dp"
@@ -23,9 +24,9 @@
 
     <EditText
         android:id="@+id/editTextUsername"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/username"
+        android:layout_width="380dp"
+        android:layout_height="48dp"
+        android:hint="@string/input_username"
         android:inputType="text"
         android:autofillHints="" />
 
@@ -37,9 +38,9 @@
 
     <EditText
         android:id="@+id/editTextPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/password"
+        android:layout_width="380dp"
+        android:layout_height="48dp"
+        android:hint="@string/input_password"
         android:inputType="textPassword"
         android:autofillHints="" />
 
@@ -52,8 +53,8 @@
 
     <Button
         android:id="@+id/buttonLogin"
-        android:layout_width="match_parent"
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
-        android:text="@string/login"/>
+        android:text="@string/login" />
 
 </LinearLayout>
