@@ -14,12 +14,16 @@
         android:layout_height="120dp"
         android:background="@drawable/kreatoroom"
         android:scaleType="centerCrop"
-        tools:ignore="ContentDescription,MissingConstraints" />
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        tools:ignore="ContentDescription,MissingConstraints"
+        android:layout_marginBottom="75dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/username"
+        android:layout_gravity="start"
         android:textSize="12sp" />
 
     <EditText
@@ -34,6 +38,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/password"
+        android:layout_gravity="start"
         android:textSize="12sp" />
 
     <EditText
@@ -55,6 +60,9 @@
         android:id="@+id/buttonLogin"
         android:layout_width="320dp"
         android:layout_height="wrap_content"
-        android:text="@string/login" />
+        android:gravity="center"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/login"
+        android:layout_marginTop="20dp"/>
 
 </LinearLayout>
