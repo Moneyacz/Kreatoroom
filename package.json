@@ -1,0 +1,22 @@
+{
+  "name": "kreatoroom",
+  "version": "1.0.0",
+  "description": "An app for content creator marketplace",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Moneyacz/Kreatoroom.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Moneyacz/Kreatoroom/issues"
+  },
+  "homepage": "https://github.com/Moneyacz/Kreatoroom#readme",
+  "dependencies": {
+    "expressjs": "^1.0.1"
+  }
+}
