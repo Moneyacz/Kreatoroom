@@ -24,12 +24,7 @@ module.exports = {
         message: 'Email atau Nomor HP harus diisi!',
       });
     }
-    if (
-      !data.password ||
-      !data.nama_lengkap ||
-      !data.tanggal_lahir ||
-      !data.jenis_kelamin
-    ) {
+    if (!data.password || !data.nama_lengkap || !data.tanggal_lahir || !data.jenis_kelamin) {
       return res.send({
         status: 400,
         success: false,
@@ -44,19 +39,13 @@ module.exports = {
       if (err) throw err;
       connection.query(
         'INSERT INTO user (id_pengguna, no_hp, email, password, nama_lengkap, tgl_lahir, jenis_kelamin) VALUES (?,?,?,?,?,?,?)',
-        [userId],
-        [data.no_hp],
-        [data.email],
-        [data.password],
-        [data.nama_lengkap],
-        [data.tanggal_lahir],
-        [data.jenis_kelamin],
+        [userId, data.no_hp, data.email, data.password, data.nama_lengkap, data.tanggal_lahir, data.jenis_kelamin],
         function (error, results) {
           if (error) throw error;
           res.send({
             status: 200,
             success: true,
-            message: 'Berhasil login!',
+            message: 'Berhasil register!',
           });
         }
       );
