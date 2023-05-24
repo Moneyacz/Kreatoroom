@@ -1,9 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".sign.RegisterActivity">
+    tools:context=".ui.register.RegisterActivity"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="16dp"
+    android:background="@color/green_base">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageView
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:background="@drawable/kreatoroom"
+        android:scaleType="centerCrop"
+        android:layout_gravity="center"
+        android:layout_marginTop="-150dp"
+        tools:ignore="ContentDescription,MissingConstraints"
+        android:layout_marginBottom="75dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/name"
+        android:layout_gravity="start"
+        android:textSize="12sp" />
+
+    <EditText
+        android:id="@+id/editTextName"
+        android:layout_width="380dp"
+        android:layout_height="48dp"
+        android:hint="@string/input_name"
+        android:inputType="text"
+        android:autofillHints="" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/username"
+        android:layout_gravity="start"
+        android:textSize="12sp" />
+
+    <EditText
+        android:id="@+id/editTextUsername"
+        android:layout_width="380dp"
+        android:layout_height="48dp"
+        android:hint="@string/input_username"
+        android:inputType="text"
+        android:autofillHints="" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/email"
+        android:layout_gravity="start"
+        android:textSize="12sp" />
+
+    <EditText
+        android:id="@+id/editTextEmail"
+        android:layout_width="380dp"
+        android:layout_height="48dp"
+        android:hint="@string/input_name"
+        android:inputType="textEmailAddress"
+        android:autofillHints="" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/date"
+        android:layout_gravity="start"
+        android:textSize="12sp" />
+
+    <EditText
+        android:id="@+id/textBirth"
+        android:layout_width="380dp"
+        android:layout_height="48dp"
+        android:hint="@string/input_date"
+        android:inputType="date"
+        android:autofillHints="" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/password"
+        android:layout_gravity="start"
+        android:textSize="12sp" />
+
+    <EditText
+        android:id="@+id/editTextPassword"
+        android:layout_width="380dp"
+        android:layout_height="48dp"
+        android:hint="@string/input_password"
+        android:inputType="textPassword"
+        android:autofillHints="" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/password_confirm"
+        android:layout_gravity="start"
+        android:textSize="12sp" />
+
+    <EditText
+        android:id="@+id/textPassword_confirm"
+        android:layout_width="380dp"
+        android:layout_height="48dp"
+        android:hint="@string/input_passwordConfirm"
+        android:inputType="textPassword"
+        android:autofillHints="" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor=""
+        android:layout_gravity="start"
+        android:id="@+id/errorLogIn" />
+
+    <Button
+        android:id="@+id/buttonLogin"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/login"
+        android:layout_marginTop="20dp"/>
+
+</LinearLayout>

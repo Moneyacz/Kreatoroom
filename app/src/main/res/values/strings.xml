@@ -5,4 +5,12 @@
     <string name="login">Login</string>
     <string name="input_password">Password Input</string>
     <string name="input_username">Username Input</string>
+    <string name="name">Name</string>
+    <string name="input_name">Name Input</string>
+    <string name="email">Email</string>
+    <string name="password_confirm">Password Confirmation</string>
+    <string name="input_passwordconfirm">Password Confirm</string>
+    <string name="input_passwordConfirm">Password Confirm</string>
+    <string name="date">Date</string>
+    <string name="input_date">Date Input</string>
 </resources>

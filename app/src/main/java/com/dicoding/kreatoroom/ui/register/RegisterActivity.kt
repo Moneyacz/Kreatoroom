@@ -1,4 +1,4 @@
-package com.dicoding.kreatoroom.sign
+package com.dicoding.kreatoroom.ui.register
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

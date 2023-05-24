@@ -1,11 +1,12 @@
-package com.dicoding.kreatoroom
+package com.dicoding.kreatoroom.ui
 
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
-import com.dicoding.kreatoroom.home.MainActivity
+import com.dicoding.kreatoroom.R
+import com.dicoding.kreatoroom.ui.home.MainActivity
 
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {

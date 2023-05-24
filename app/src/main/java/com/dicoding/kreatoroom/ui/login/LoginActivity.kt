@@ -1,8 +1,7 @@
-package com.dicoding.kreatoroom.sign
+package com.dicoding.kreatoroom.ui.login
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.dicoding.kreatoroom.R
 import com.dicoding.kreatoroom.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
