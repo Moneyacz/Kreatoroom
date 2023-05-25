@@ -13,4 +13,7 @@
     <string name="input_passwordConfirm">Password Confirm</string>
     <string name="date">Date</string>
     <string name="input_date">Date Input</string>
+    <string name="hint_search">What do you want to look for?</string>
+    <string name="registering">Don\'t have an account yet?</string>
+    <string name="toReg">Register</string>
 </resources>
