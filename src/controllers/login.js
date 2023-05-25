@@ -26,7 +26,7 @@ module.exports = {
       });
     }
     pool.getConnection(function (err, connection) {
-      if (err) throw err;
+    if (err) throw err;
       connection.query(
         'SELECT * FROM user WHERE email = ?',
         [data.email],
