@@ -16,4 +16,7 @@
     <string name="hint_search">What do you want to look for?</string>
     <string name="registering">Don\'t have an account yet?</string>
     <string name="toReg">Register</string>
+    <string name="register">Register</string>
+    <string name="account_exist">Have an account already?</string>
+    <string name="log_in">Log In</string>
 </resources>
