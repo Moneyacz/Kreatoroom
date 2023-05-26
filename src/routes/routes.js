@@ -5,8 +5,13 @@ router.get('/login', login.getLoginPage);
 router.post('/login', login.postLoginData);
 router.post('/register', register.postRegisterData);
 router.get('/profile/:userId', profile.getUserData);
-// router.get('/', home.getBarangData);
-router.get('/:page?', home.getBarangData);
-router.get('/search/:judulbarang', home.getBarangByName);
+
+router.get('/home/:page?', home.getBarangData);
+router.get('/home/search/:judulbarang', home.getBarangByName);
+router.get('/home/bundle', home.getBundle);
+router.get('/home/bundle/:idBundle', home.getBundleById);
+
+router.get('/toko/:page?', home.getTokoData);
+router.get('/toko/search/:namatoko', home.getTokoByName);
 
 module.exports = router;
