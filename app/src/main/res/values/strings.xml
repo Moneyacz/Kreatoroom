@@ -20,4 +20,5 @@
     <string name="account_exist">Have an account already?</string>
     <string name="log_in">Log In</string>
     <string name="greetings">Hello,</string>
+    <string name="product_name">Product Name</string>
 </resources>
