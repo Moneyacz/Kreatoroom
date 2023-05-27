@@ -21,4 +21,5 @@
     <string name="log_in">Log In</string>
     <string name="greetings">Hello,</string>
     <string name="product_name">Product Name</string>
+    <string name="shopping_cart">Shopping Cart</string>
 </resources>
