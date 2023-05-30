@@ -1,7 +1,10 @@
+require('dotenv').config();
+
 module.exports = {
     multipleStatements  : true,
-    host                : 'localhost',
-    user                : 'root',
+    host                : process.env.DB_HOST,
+    prompt              : process.env.DB_PORT,
+    user                : process.env.DB_USER,
     password            : '',
-    database            : 'kreatoroom'
+    database            : process.env.DB_NAME
 };
