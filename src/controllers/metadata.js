@@ -7,12 +7,10 @@ pool.on('error', (err) => {
 });
 
 module.exports = {
-  getBarangData(req, res) {
+  getMetadata(req, res) {
     pool.getConnection(function (err, connection) {
       if (err) throw err;
-      connection.query(
-        'SELECT * FROM barang;',
-        function (error, results) {
+      connection.query('SELECT * FROM barang;', function (error, results) {
           if (error) throw error;
           res.send({
             status: 200,
