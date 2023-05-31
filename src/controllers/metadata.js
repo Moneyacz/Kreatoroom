@@ -39,6 +39,7 @@ module.exports = {
       berat_kg: req.body.berat_kg,
       deskripsi: req.body.deskripsi,
       id_toko: req.body.id_toko,
+      id_foto_barang: req.body.id_foto_barang,
     };
     pool.getConnection(function (err, connection) {
       if (err) throw err;
