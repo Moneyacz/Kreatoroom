@@ -25,7 +25,6 @@ module.exports = {
   },
   postMetadata(req, res) {
     const data = {
-      id_barang: req.body.id_barang,
       judul_barang: req.body.email,
       tgl_masuk: req.body.password,
       stock: req.body.stock,
