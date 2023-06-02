@@ -1,5 +1,13 @@
 const router = require('express').Router();
-const { login, register, profile, home, metadata } = require('../controllers/index');
+const {
+  login,
+  register,
+  profile,
+  home,
+  metadata,
+  xendit,
+} = require('../controllers/index');
+const { getBalance } = require('../controllers/xendit');
 
 router.get('/login', login.getLoginPage);
 router.post('/login', login.postLoginData);
@@ -17,5 +25,7 @@ router.get('/toko/search/:namatoko', home.getTokoByName);
 // post bundle
 
 router.get('/metadata', metadata.getMetadata);
+router.get('/balance', xendit.getBalance);
+router.get('/ewalet', xendit.postEwallet);
 
 module.exports = router;

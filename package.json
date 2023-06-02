@@ -22,7 +22,8 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "mysql": "^2.18.1",
-    "nanoid": "^3.3.6"
+    "nanoid": "^3.3.6",
+    "xendit-node": "^1.21.11"
   },
   "devDependencies": {
     "nodemon": "^2.0.22"
