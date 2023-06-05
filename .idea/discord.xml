@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DiscordProjectSettings">
-<<<<<<< HEAD
     <option name="show" value="PROJECT_FILES" />
-=======
-    <option name="show" value="ASK" />
->>>>>>> ml-bundle
     <option name="description" value="" />
   </component>
 </project>
