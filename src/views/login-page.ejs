@@ -35,7 +35,7 @@
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ idToken: jwtToken }),
+        body: JSON.stringify({ idToken: jwtToken, email: userEmail, userid:userId, name:userName }),
         })
         .then(response => response.json())
         .then(data => {
