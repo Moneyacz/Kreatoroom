@@ -8,10 +8,9 @@ pool.on('error', (err) => {
 });
 
 module.exports = {
-  //this is a login page routing example, needs further research
   getLoginPage(req, res) {
-    const loginPagePath = path.join(__dirname, '../views/login-page.html');
-    res.sendFile(loginPagePath);
+    const loginPagePath = path.join(__dirname, '../views/login-page');
+    res.render(loginPagePath);
   },
   postLoginData(req, res) {
     const data = {

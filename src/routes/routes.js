@@ -7,11 +7,11 @@ const {
   metadata,
   xendit,
 } = require('../controllers/index');
-const { getBalance } = require('../controllers/xendit');
 
 router.get('/login', login.getLoginPage);
 router.post('/login', login.postLoginData);
 router.post('/register', register.postRegisterData);
+router.get('/register', register.getRegisterPage);
 router.get('/profile/:userId', profile.getUserData);
 
 router.get('/home/:page?', home.getBarangData);

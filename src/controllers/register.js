@@ -1,6 +1,7 @@
 const config = require('../configs/database');
 const mysql = require('mysql');
 const pool = mysql.createPool(config);
+const path = require('path');
 const { nanoid } = require('nanoid');
 
 pool.on('error', (err) => {
@@ -8,6 +9,10 @@ pool.on('error', (err) => {
 });
 
 module.exports = {
+  getRegisterPage(req, res) {
+    const registerPagePath = path.join(__dirname, '../views/register-page');
+    res.render(registerPagePath);
+  },
   postRegisterData(req, res) {
     const data = {
       email: req.body.email,
