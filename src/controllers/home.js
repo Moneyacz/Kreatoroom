@@ -1,5 +1,6 @@
 const config = require('../configs/database');
 const mysql = require('mysql');
+const path = require('path');
 const pool = mysql.createPool(config);
 
 pool.on('error', (err) => {
@@ -7,6 +8,10 @@ pool.on('error', (err) => {
 });
 
 module.exports = {
+  getHomePage(req, res) {
+    const homePagePath = path.join(__dirname, '../views/home-page');
+    res.render(homePagePath);
+  },
   getBarangData(req, res) {
     pool.getConnection(function (err, connection) {
       let count = 0;

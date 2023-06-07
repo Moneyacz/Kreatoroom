@@ -14,6 +14,7 @@ router.post('/register', register.postRegisterData);
 router.get('/register', register.getRegisterPage);
 router.get('/profile/:userId', profile.getUserData);
 
+router.get('/home', home.getHomePage);
 router.get('/home/:page?', home.getBarangData);
 router.get('/home/search/:judulbarang', home.getBarangByName);
 router.get('/home/bundle', home.getBundle);

@@ -35,7 +35,7 @@ module.exports = {
             console.log(err);
           } else if (rows.length > 0) {
             res.send({
-              message: 'User alredy exists',
+              message: 'User already exist',
             });
           } else {
             connection.query(
@@ -43,12 +43,13 @@ module.exports = {
               [data.userid, data.email, data.name]
             );
             res.send({
-              message: 'User berhasil ditambahkan',
+              message: 'User data added successfully',
               data: data,
             });
           }
         }
       );
+
       // connection.query(
       //   'SELECT * FROM user WHERE email = ?',
       //   [data.email],

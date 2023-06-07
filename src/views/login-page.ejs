@@ -3,6 +3,8 @@
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 <script>
     const apiUrl = 'http://localhost:8080/login'; // Replace with the API endpoint URL
+    const registerUrl = 'http://localhost:8080/register'; // Replace with the register page URL
+    const homeUrl = 'http://localhost:8080/home';
 
     function handleCredentialResponse(response) {
         console.log("Encoded JWT ID token: " + response.credential);
@@ -17,48 +19,54 @@
         const userId = decodedPayload.sub;
         const userEmail = decodedPayload.email;
         const userName = decodedPayload.name;
-        const userPicture = decodedPayload.picture;
-        const userGivenName = decodedPayload.given_name;
-        const userFamilyName = decodedPayload.family_name;
 
         // Use the extracted data as needed
         console.log('User ID:', userId);
         console.log('User Email:', userEmail);
         console.log('User Name:', userName);
-        console.log('User Pict :', decodedPayload.picture);
-        console.log('User Given Name :',decodedPayload.given_name);
-        console.log('User Family Name :',decodedPayload.family_name);
 
-        //fetch to API
+        // Fetch to API
         fetch(apiUrl, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ idToken: jwtToken, email: userEmail, userid:userId, name:userName }),
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ idToken: jwtToken, email: userEmail, userid: userId, name: userName }),
         })
         .then(response => response.json())
         .then(data => {
             // Handle the API response
             console.log('API Response:', data);
+
+            // Check if the response indicates successful registration
+            if (data.message === 'User data added successfully') {
+                // Redirect to the register page
+                window.location.href = registerUrl;
+            }
+            if (data.message === 'User already exist') {
+                // Redirect to the register page
+                window.location.href = homeUrl;
+            }
         })
         .catch(error => {
             // Handle any errors during the request or response handling
             console.error('Error:', error);
         });
     }
-    window.onload = function () {
-    google.accounts.id.initialize({
-        client_id: "573309958754-prkpslkji9sbhennbuoe7tq85tnvvjbp.apps.googleusercontent.com",
-        callback: handleCredentialResponse
-    });
-    google.accounts.id.renderButton(
-    document.getElementById("buttonDiv"),
-{ theme: "outline", size: "large" }  // customization attributes
-    );
-    google.accounts.id.prompt(); // also display the One Tap dialog
-}
 
+    window.onload = function () {
+        google.accounts.id.initialize({
+            client_id: "573309958754-prkpslkji9sbhennbuoe7tq85tnvvjbp.apps.googleusercontent.com",
+            callback: handleCredentialResponse
+        });
+
+        google.accounts.id.renderButton(
+            document.getElementById("buttonDiv"),
+            { theme: "outline", size: "large" }  // customization attributes
+        );
+
+        google.accounts.id.prompt(); // also display the One Tap dialog
+    }
 </script>
 <div id="buttonDiv"></div>
 </body>

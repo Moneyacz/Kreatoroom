@@ -26,7 +26,7 @@ module.exports = {
       return res.send({
         status: 400,
         success: false,
-        message: 'Email atau Nomor HP harus diisi!',
+        message: 'Email or Nomor HP data should be filled!',
       });
     }
     if (
@@ -38,7 +38,7 @@ module.exports = {
       return res.send({
         status: 400,
         success: false,
-        message: 'Data tidak boleh kosong!',
+        message: 'Data cannot be empty!',
       });
     }
 
@@ -63,7 +63,7 @@ module.exports = {
           res.send({
             status: 200,
             success: true,
-            message: 'Berhasil register!',
+            message: 'User successfully registered!',
           });
         }
       );
