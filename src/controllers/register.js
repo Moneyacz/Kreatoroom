@@ -3,6 +3,7 @@ const mysql = require('mysql');
 const pool = mysql.createPool(config);
 const path = require('path');
 const { nanoid } = require('nanoid');
+const bcrypt = require('bcrypt');
 
 pool.on('error', (err) => {
   console.error(err);
@@ -41,30 +42,50 @@ module.exports = {
         message: 'Data cannot be empty!',
       });
     }
-
     const userId = nanoid(16);
-    //enkripsi password blabla bla
-
-    pool.getConnection(function (err, connection) {
-      if (err) throw err;
+    pool.getConnection(async function (err, connection) {
       connection.query(
-        'INSERT INTO user (id_pengguna, no_hp, email, password, nama_lengkap, tgl_lahir, jenis_kelamin) VALUES (?,?,?,?,?,?,?)',
-        [
-          userId,
-          data.no_hp,
-          data.email,
-          data.password,
-          data.nama_lengkap,
-          data.tanggal_lahir,
-          data.jenis_kelamin,
-        ],
-        function (error, results) {
-          if (error) throw error;
-          res.send({
-            status: 200,
-            success: true,
-            message: 'User successfully registered!',
-          });
+        'SELECT email FROM user WHERE email = ?',
+        [data.email],
+        async function (err, results) {
+          if (err) throw err;
+          if (results.length > 0) {
+            res.send({
+              status: 400,
+              success: true,
+              message: 'User sudah ada silahkan menuju halaman Login',
+            });
+            return;
+          } else {
+            await bcrypt.genSalt(10, (err, salt) => {
+              bcrypt.hash(data.password, salt, (err, hash) => {
+                connection.query(
+                  'INSERT INTO user (id_pengguna, no_hp, email, password, nama_lengkap, tgl_lahir, jenis_kelamin) VALUES (?,?,?,?,?,?,?)',
+                  [
+                    userId,
+                    data.no_hp,
+                    data.email,
+                    hash,
+                    data.nama_lengkap,
+                    data.tanggal_lahir,
+                    data.jenis_kelamin,
+                  ],
+                  function (error, results) {
+                    if (error) throw error;
+                    res.send({
+                      status: 200,
+                      success: true,
+                      message: 'User successfully registered!',
+                      test: hash,
+                      test2: data.password,
+                    });
+                  }
+                );
+              });
+            });
+            // const salt = await bcrypt.genSalt(10)
+            // const hashPassword = await bcrypt.hash(data.password, salt);
+          }
         }
       );
       connection.release();
