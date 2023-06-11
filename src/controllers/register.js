@@ -33,7 +33,6 @@ module.exports = {
     if (
       !data.password ||
       !data.nama_lengkap ||
-      !data.tanggal_lahir ||
       !data.jenis_kelamin
     ) {
       return res.send({
@@ -83,8 +82,6 @@ module.exports = {
                 );
               });
             });
-            // const salt = await bcrypt.genSalt(10)
-            // const hashPassword = await bcrypt.hash(data.password, salt);
           }
         }
       );

@@ -59,24 +59,30 @@ module.exports = {
         message: 'Email dan password harus diisi!',
       });
     }
-
     pool.getConnection(async function (err, connection) {
       connection.query(
         'SELECT password FROM user WHERE email = ?',
         [data.email],
         async function (error, results) {
           if (error) throw error;
-          const dbPass = await results[0].password;
-          const isPasswordValid = await bcrypt.compare(data.password, dbPass);
-          if (isPasswordValid == false) {
+    
+          if (results.length === 0) {
             res.send({
               status: 400,
               success: false,
-              message: 'Invalid inserted password',
-              test: dbPass,
-              ress: results[0].password,
-              test2: typeof isPasswordValid,
-              test3: data.password,
+              message: 'Invalid email',
+            });
+            return;
+          }
+
+          const dbPass = results[0].password;
+
+          const isPasswordValid = await bcrypt.compare(data.password, dbPass);
+          if (!isPasswordValid) {
+            res.send({
+              status: 400,
+              success: false,
+              message: 'Invalid password',
             });
           } else {
             res.send({
@@ -86,25 +92,7 @@ module.exports = {
             });
           }
         }
-      );
-      // connection.query(
-      //   'SELECT * FROM user WHERE email = ?',
-      //   [data.email],
-      //   function (error, results) {
-      //     if (error) throw error;
-      //     // if (results.length === 0 || results[0].password !== data.password) {
-      //     if (results.length === 0) {
-      //       return res
-      //         .status(401)
-      //         .json({ message: 'Invalid username or password', results });
-      //     }
-      //     res.send({
-      //       status: 200,
-      //       success: true,
-      //       message: 'Berhasil login!',
-      //     });
-      //   }
-      // );
+      );  
       connection.release();
     });
   },

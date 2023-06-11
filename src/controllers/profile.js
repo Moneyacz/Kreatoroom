@@ -13,7 +13,7 @@ module.exports = {
     pool.getConnection(function (err, connection) {
       if (err) throw err;
       connection.query(
-        'SELECT * FROM user WHERE id_pengguna = ?',
+        "SELECT * FROM user WHERE id_pengguna = ?",
         [userId],
         function (error, results) {
           if (error) throw error;
