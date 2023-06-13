@@ -1,6 +1,7 @@
 <html>
     <head>
         <title>Sign In</title>
+        <!-- <link rel="stylesheet" href="style/login.css"> -->
         <style>
             body {
                 display: flex;
@@ -9,7 +10,6 @@
                 justify-content: center;
                 font-family: Helvetica, Arial, sans-serif;
             }
-
             .login-container {
                 padding: 4vh;
                 width: 60vh;
@@ -21,7 +21,12 @@
                 justify-content: center;
                 color: #424242;
             }
-
+            .login-container form{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
             .login-container img {
                 max-width: 8vh;
                 margin-bottom: -1rem;
@@ -30,16 +35,13 @@
             .login-container h2{
                 margin-bottom: 4rem;
             }
-
             .login-input {
                 margin-bottom: 1rem;
                 width: 18rem;
             }
-
             .login-input label {
                 display: block;
             }
-
             .login-input input {
                 width: 100%;
                 padding: 0.5rem;
@@ -48,7 +50,6 @@
                 font-size: 1rem;
                 margin-bottom: 1.5rem;
             }
-
             .login-container button {
                 height: 2.5rem;
                 width: 18rem;
@@ -61,11 +62,9 @@
                 cursor: pointer;
                 font-size: 1rem;
             }
-
             .atau {
                 margin-bottom: 2rem;
             }
-
             .login-container button:hover {
                 background-color: #24c2ad;
             }
@@ -74,7 +73,7 @@
     <body>
         <script src="https://accounts.google.com/gsi/client" async defer></script>
         <script>
-            const apiUrl = 'http://localhost:8080/google-login'; //API endpoint URL
+            const apiUrl = 'http://localhost:8080/login'; //API endpoint URL
             const registerUrl = 'http://localhost:8080/register'; //register page URL
             const homeUrl = 'http://localhost:8080/home';
             function handleCredentialResponse(response) {
@@ -137,23 +136,59 @@
 
                 google.accounts.id.prompt(); // also display the One Tap dialog
             }
+            function handleLogin(event) {
+                event.preventDefault(); // Prevent the form from submitting normally
+
+                // Get the form inputs
+                const emailInput = document.getElementById('email');
+                const passwordInput = document.getElementById('password');
+
+                // Create the request body
+                const requestBody = {
+                    email: emailInput.value,
+                    password: passwordInput.value
+                };
+                console.log(requestBody.email);
+                console.log(requestBody.password);
+                // Send the POST request to the API endpoint
+                fetch(apiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(requestBody),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('API Response:', data);
+                    if (data.message === 'Login success') {
+                        window.location.href = homeUrl;
+                    }
+                })
+                .catch(error => {
+                    // Handle any errors during the request or response handling
+                    console.error('Error:', error);
+                });
+            }
         </script>
         <div class="login-container">
-            <img src="https://storage.googleapis.com/kreatoroom-logos/Kreatoroom.png" alt="kreatoroom-logo">
-            <br>
-            <h2>Login Kreatoroom</h2>
-            <div class="login-input">
-                <label for="email">Email<br></label>
-                <input type="email" id="email" name="email" required>
+            <form id="loginForm">
+                <img src="https://storage.googleapis.com/kreatoroom-logos/Kreatoroom.png" alt="kreatoroom-logo">
                 <br>
-                <label for="password">Password<br></label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <div>
-                <button type="submit">Login</button>
-            </div>
-            <div class="atau"><br>atau<br><br></div>
-            <div class="google-button" id="buttonDiv"></div>
+                <h2>Login Kreatoroom</h2>
+                <div class="login-input">
+                    <label for="email">Email<br></label>
+                    <input type="email" id="email" name="email" required>
+                    <br>
+                    <label for="password">Password<br></label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div>
+                    <button type="submit" onclick="handleLogin(event)">Login</button>
+                </div>
+                <div class="atau"><br>atau<br><br></div>
+                <div class="google-button" id="buttonDiv"></div>
+            </form>
         </div>
     </body>
 </html>

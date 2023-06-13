@@ -16,9 +16,10 @@ module.exports = {
   },
   postRegisterData(req, res) {
     const data = {
-      token: req.body.token || '',
+      email: req.body.email,
       no_hp: req.body.no_hp,
       password: req.body.password,
+      nama_lengkap: req.body.nama_lengkap
     };
     if (!data.email && !data.no_hp) {
       return res.send({
@@ -29,8 +30,7 @@ module.exports = {
     }
     if (
       !data.password ||
-      !data.nama_lengkap ||
-      !data.jenis_kelamin
+      !data.nama_lengkap
     ) {
       return res.send({
         status: 400,
@@ -56,15 +56,13 @@ module.exports = {
             await bcrypt.genSalt(10, (err, salt) => {
               bcrypt.hash(data.password, salt, (err, hash) => {
                 connection.query(
-                  'INSERT INTO user (id_pengguna, no_hp, email, password, nama_lengkap, tgl_lahir, jenis_kelamin) VALUES (?,?,?,?,?,?,?)',
+                  'INSERT INTO user (id_pengguna, no_hp, email, password, nama_lengkap) VALUES (?,?,?,?,?)',
                   [
                     userId,
                     data.no_hp,
                     data.email,
                     hash,
                     data.nama_lengkap,
-                    data.tanggal_lahir,
-                    data.jenis_kelamin,
                   ],
                   function (error, results) {
                     if (error) throw error;
