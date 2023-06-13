@@ -3,6 +3,7 @@ const path = require('path');
 const mysql = require('mysql');
 const { throws } = require('assert');
 const pool = mysql.createPool(config);
+const { nanoid } = require('nanoid');
 const bcrypt = require('bcrypt');
 
 pool.on('error', (err) => {
@@ -15,9 +16,11 @@ module.exports = {
     res.render(loginPagePath);
   },
   postLoginGoogle(req, res) {
+    const id_pengguna = nanoid(16);
     const data = {
       email: req.body.email,
-      userid: req.body.userid,
+      token: req.body.token,
+      google_id: req.body.google_id,
       name: req.body.name,
     };
     pool.getConnection(function (err, connection) {
@@ -34,8 +37,8 @@ module.exports = {
             });
           } else {
             connection.query(
-              'INSERT INTO user (id_pengguna, email, nama_lengkap) VALUES (?,?,?)',
-              [data.userid, data.email, data.name]
+              'INSERT INTO user (id_pengguna, token, google_id, email, nama_lengkap) VALUES (?,?,?,?,?)',
+              [id_pengguna ,data.token, data.google_id, data.email, data.name]
             );
             res.send({
               message: 'User data added successfully',

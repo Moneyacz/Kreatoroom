@@ -8,8 +8,8 @@ const {
   xendit,
 } = require('../controllers/index');
 
-router.get('/login', login.getLoginPage);
-router.post('/logingoogle', login.postLoginGoogle);
+router.get('/google-login', login.getLoginPage);
+router.post('/google-login', login.postLoginGoogle);
 router.post('/login', login.postLoginData);
 router.post('/register', register.postRegisterData);
 router.get('/register', register.getRegisterPage);

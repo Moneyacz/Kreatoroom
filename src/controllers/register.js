@@ -16,12 +16,9 @@ module.exports = {
   },
   postRegisterData(req, res) {
     const data = {
-      email: req.body.email,
+      token: req.body.token || '',
       no_hp: req.body.no_hp,
       password: req.body.password,
-      nama_lengkap: req.body.nama_lengkap,
-      tanggal_lahir: req.body.tanggal_lahir,
-      jenis_kelamin: req.body.jenis_kelamin,
     };
     if (!data.email && !data.no_hp) {
       return res.send({
