@@ -9,6 +9,7 @@ pool.on('error', (err) => {
   console.error(err);
 });
 
+
 module.exports = {
   getRegisterPage(req, res) {
     const registerPagePath = path.join(__dirname, '../views/register-page');
