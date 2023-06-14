@@ -57,6 +57,36 @@
       .topnav .icon {
         display: none;
       }
+      .container-data {
+        background-color: #333;
+        display: flex;
+        flex-direction: row;
+        margin-left: auto;
+        align-items: center;
+        justify-content: center;
+      }
+      .item-container {
+        background-color: #f5f5f5;
+        padding: 10px;
+        margin: 10px;
+        max-width: 30rem;
+      }
+
+      .item-container h3 {
+        font-size: 18px;
+        color: #333;
+        margin-bottom: 5px;
+      }
+
+      .item-container p {
+        margin: 0;
+      }
+
+      .item-container hr {
+        border: none;
+        border-top: 1px solid #ddd;
+        margin: 10px 0;
+      }
 
       @media screen and (max-width: 1200px) {
         .topnav a:not(:first-child) {
@@ -114,6 +144,7 @@
       <p>Resize the browser window to see how it works.</p>
       <div></div>
     </div>
+    <div id="data-container" class="container-data"></div>
 
     <script>
       function myFunction() {
@@ -125,15 +156,29 @@
         }
       }
       // Function to fetch data from the backend service
-      // Function to fetch data from the backend service
       function fetchData() {
         fetch('http://localhost:8080/home/:page?', {
           method: 'GET',
         }) // Replace '/home' with the appropriate URL or route
-          .then((response) => response.text())
+          .then((response) => response.json())
           .then((data) => {
             // Handle the retrieved data here
-            console.log(data);
+            const dataContainer = document.getElementById('data-container');
+            dataContainer.innerHTML = '';
+
+            data.data.forEach((item) => {
+              const itemContainer = document.createElement('div');
+              itemContainer.classList.add('item-container');
+
+              itemContainer.innerHTML = `
+                <h3>${item.judul_barang}</h3>
+                <p>${item.deskripsi}</p>
+                <p>Price: $${item.harga}</p>
+                <p>Stock: ${item.stock}</p>
+                <hr>
+                `;
+              dataContainer.appendChild(itemContainer);
+            });
           })
           .catch((error) => {
             console.log('Error:', error);
