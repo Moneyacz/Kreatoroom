@@ -13,7 +13,7 @@
             .login-container {
                 padding: 4vh;
                 width: 60vh;
-                margin-top: 16vh;
+                margin-top: 12vh;
                 box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
                 display: flex;
                 flex-direction: column;
@@ -76,6 +76,7 @@
             const apiUrl = 'http://localhost:8080/login'; //API endpoint URL
             const registerUrl = 'http://localhost:8080/register'; //register page URL
             const homeUrl = 'http://localhost:8080/home';
+            const fillDataUrl = 'http://localhost:8080/fill-data';
             function handleCredentialResponse(response) {
                 console.log("Encoded JWT ID token: " + response.credential);
                 const jwtToken = response.credential; // Replace with the actual JWT token you received
@@ -111,7 +112,7 @@
                     // Check if the response indicates successful registration
                     if (data.message === 'User data added successfully') {
                         // Redirect to the register page
-                        window.location.href = registerUrl;
+                        window.location.href = fillDataUrl;
                     }
                     if (data.message === 'User already exist') {
                         // Redirect to the register page
@@ -188,6 +189,9 @@
                 </div>
                 <div class="atau"><br>atau<br><br></div>
                 <div class="google-button" id="buttonDiv"></div>
+                <div><br><br>
+                    Belum punya akun? Daftar sekarang <a href="http://localhost:8080/register">di sini</a>
+                </div>
             </form>
         </div>
     </body>

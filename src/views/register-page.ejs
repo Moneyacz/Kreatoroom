@@ -1,9 +1,149 @@
-<!DOCTYPE html>
 <html>
   <head>
-    <title>Register Page</title>
+    <title>Register</title>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-family: Helvetica, Arial, sans-serif;
+      }
+
+      .register-container {
+        padding: 4vh;
+        width: 60vh;
+        margin-top: 12vh;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: #424242;
+      }
+
+      .register-container form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .register-container img {
+        max-width: 8vh;
+        margin-bottom: -1rem;
+      }
+
+      .register-container h2 {
+        margin-bottom: 4rem;
+      }
+
+      .register-input {
+        margin-bottom: 1rem;
+        width: 18rem;
+      }
+
+      .register-input label {
+        display: block;
+      }
+
+      .register-input input {
+        width: 100%;
+        padding: 0.5rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .register-container button {
+        height: 2.5rem;
+        width: 18rem;
+        padding: 0.5rem;
+        margin-bottom: 2rem;
+        background-color: #1ddfa2;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 1rem;
+      }
+
+      .register-container button:hover {
+        background-color: #24c2ad;
+      }
+    </style>
   </head>
   <body>
-    Welcome to register page!
+    <div class="register-container">
+      <form id="registerForm">
+        <img src="https://storage.googleapis.com/kreatoroom-logos/Kreatoroom.png" alt="kreatoroom-logo" /><br />
+        <h2>Register Kreatoroom</h2>
+        <div class="register-input">
+          <label for="email">Email<br /></label>
+          <input type="email" id="email" name="email" required /><br />
+          <label for="no_hp">Nomor HP<br /></label>
+          <input type="text" id="no_hp" name="no_hp" required /><br />
+          <label for="password">Password<br /></label>
+          <input type="password" id="password" name="password" required /><br />
+          <label for="nama_lengkap">Nama Lengkap<br /></label>
+          <input type="text" id="nama_lengkap" name="nama_lengkap" required />
+        </div>
+        <div>
+          <button type="submit" onclick="handleRegister(event)">Register</button>
+        </div>
+        <div><br /><br />
+          Sudah punya akun? Login <a href="http://localhost:8080/login">di sini</a>
+        </div>
+      </form>
+    </div>
+    <script>
+      const apiUrl = 'http://localhost:8080/register'; // API endpoint URL
+      const loginUrl = 'http://localhost:8080/login'; // Login page URL
+      const fillDataUrl = 'http://localhost:8080/fill-data'; // Fill data URL
+
+      function handleRegister(event) {
+        event.preventDefault();
+
+        // Get form values
+        const email = document.getElementById('email').value;
+        const no_hp = document.getElementById('no_hp').value;
+        const password = document.getElementById('password').value;
+        const nama_lengkap = document.getElementById('nama_lengkap').value;
+
+        // Create user object
+        const user = {
+          email,
+          no_hp,
+          password,
+          nama_lengkap,
+        };
+
+        // Send registration request to the API
+        fetch(apiUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(user),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            // Handle registration response
+            if (data.success) {
+              // Redirect to login page on successful registration
+              window.location.href = fillDataUrl;
+            } else {
+              // Display error message
+              alert(data.message);
+            }
+          })
+          .catch((error) => {
+            // Handle error
+            console.error('Error:', error);
+            alert('An error occurred during registration.');
+          });
+      }
+    </script>
   </body>
 </html>

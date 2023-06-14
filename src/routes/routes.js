@@ -2,6 +2,7 @@ const router = require('express').Router();
 const {
   login,
   register,
+  fillData,
   profile,
   home,
   metadata,
@@ -12,6 +13,7 @@ router.get('/login', login.getLoginPage);
 router.post('/login', login.postLoginData);
 router.post('/register', register.postRegisterData);
 router.get('/register', register.getRegisterPage);
+router.get('/fill-data', fillData.getFillDataPage);
 router.get('/profile/:userId', profile.getUserData);
 
 router.get('/home', home.getHomePage);
