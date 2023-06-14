@@ -1,11 +1,162 @@
+<!-- fill-page.ejs -->
+
+<!DOCTYPE html>
 <html>
-    <head>
-        <title>Isi data diri</title>
-    </head>
-    <body>
-        Halaman isi data diri
-        <div><br /><br />
-            Sudah punya akun? Login <a href="https://kreatoroom-999.uc.r.appspot.com/login">di sini</a>
-          </div>
-    </body>
+  <head>
+    <title>Lengkapi Data</title>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-family: Helvetica, Arial, sans-serif;
+      }
+
+      .fill-container {
+        padding: 4vh;
+        width: 60vh;
+        margin-top: 12vh;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: #424242;
+      }
+
+      .fill-container form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .fill-container img {
+        max-width: 8vh;
+        margin-bottom: -1rem;
+      }
+
+      .fill-container h2 {
+        margin-bottom: 4rem;
+      }
+
+      .fill-input {
+        margin-bottom: 1rem;
+        width: 18rem;
+      }
+
+      .fill-input label {
+        display: block;
+      }
+
+      .fill-input input[type="date"] {
+        width: 100%;
+        padding: 0.5rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .fill-input select {
+        width: 100%;
+        padding: 0.5rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .fill-container button {
+        height: 2.5rem;
+        width: 18rem;
+        padding: 0.5rem;
+        margin-bottom: 2rem;
+        background-color: #1ddfa2;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 1rem;
+      }
+
+      .fill-container button:hover {
+        background-color: #24c2ad;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="fill-container">
+      <form id="fillDataForm">
+        <img src="https://storage.googleapis.com/kreatoroom-logos/Kreatoroom.png" alt="kreatoroom-logo" /><br />
+        <h2>Lengkapi Data</h2>
+        <div class="fill-input">
+          <label for="no_hp">Nomor HP<br /></label>
+          <input type="text" id="no_hp" name="no_hp" required /><br />
+          <label for="nama_lengkap">Nama Lengkap<br /></label>
+          <input type="text" id="nama_lengkap" name="nama_lengkap" required /><br />
+          <label for="tgl_lahir">Tanggal Lahir<br /></label>
+          <input type="date" id="tgl_lahir" name="tgl_lahir" required /><br />
+          <label for="jenis_kelamin">Jenis Kelamin<br /></label>
+          <select id="jenis_kelamin" name="jenis_kelamin" required>
+            <option value="">Pilih Jenis Kelamin</option>
+            <option value="Laki-laki">Laki-laki</option>
+            <option value="Perempuan">Perempuan</option>
+          </select>
+        </div>
+        <div>
+          <button type="submit" onclick="handleFillData(event)">Simpan</button>
+        </div>
+      </form>
+    </div>
+
+    <script>
+      const apiUrl = 'https://kreatoroom-999.uc.r.appspot.com/fill-data'; // API endpoint URL
+      const redirectUrl = 'https://kreatoroom-999.uc.r.appspot.com/home'; // Redirect URL after successful data submission
+
+      function handleFillData(event) {
+        event.preventDefault();
+
+        // Get form values
+        const no_hp = document.getElementById('no_hp').value;
+        const nama_lengkap = document.getElementById('nama_lengkap').value;
+        const tgl_lahir = document.getElementById('tgl_lahir').value;
+        const jenis_kelamin = document.getElementById('jenis_kelamin').value;
+
+        // Create data object
+        const data = {
+          no_hp,
+          nama_lengkap,
+          tgl_lahir,
+          jenis_kelamin,
+        };
+
+        // Send data submission request to the API
+        fetch(apiUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            // Handle data submission response
+            if (data.success) {
+              // Redirect to the dashboard on successful data submission
+              window.location.href = redirectUrl;
+            } else {
+              // Display error message
+              alert(data.message);
+            }
+          })
+          .catch((error) => {
+            // Handle error
+            console.error('Error:', error);
+            alert('An error occurred during data submission.');
+          });
+      }
+    </script>
+  </body>
 </html>

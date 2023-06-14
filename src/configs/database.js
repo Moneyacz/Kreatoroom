@@ -5,6 +5,6 @@ module.exports = {
     host                : process.env.DB_HOST,
     prompt              : process.env.DB_PORT,
     user                : process.env.DB_USER,
-    password            : '',
+    password            : process.env.DB_PASSWORD,
     database            : process.env.DB_NAME
 };
