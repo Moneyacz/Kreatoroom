@@ -4,6 +4,7 @@ const {
   register,
   fillData,
   profile,
+  toko,
   home,
   metadata,
   xendit,
@@ -15,6 +16,11 @@ router.post('/register', register.postRegisterData);
 router.get('/register', register.getRegisterPage);
 router.get('/fill-data', fillData.getFillDataPage);
 router.get('/profile/:userId', profile.getUserData);
+
+router.get('/toko', toko.getTokoPage);
+router.get('/toko/barang', toko.getBarangToko);
+router.post('/toko/barang', toko.postBarangToko);
+router.post('/register/toko', toko.postTokoData);
 
 router.get('/home', home.getHomePage);
 router.get('/home/:page?', home.getBarangData);
