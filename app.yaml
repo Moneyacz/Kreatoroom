@@ -1,2 +1,1 @@
-service: backend
-runtime: nodejs16
+runtime: nodejs18
