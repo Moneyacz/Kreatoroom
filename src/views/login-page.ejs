@@ -73,10 +73,39 @@
     <body>
         <script src="https://accounts.google.com/gsi/client" async defer></script>
         <script>
-            const apiUrl = 'https://kreatoroom-999.uc.r.appspot.com/login'; //API endpoint URL
-            const registerUrl = 'https://kreatoroom-999.uc.r.appspot.com/register'; //register page URL
-            const homeUrl = 'https://kreatoroom-999.uc.r.appspot.com/home';
-            const fillDataUrl = 'https://kreatoroom-999.uc.r.appspot.com/fill-data';
+            // const apiUrl = 'https://kreatoroom-999.uc.r.appspot.com/login'; //API endpoint URL
+            // const registerUrl = 'https://kreatoroom-999.uc.r.appspot.com/register'; //register page URL
+            // const homeUrl = 'https://kreatoroom-999.uc.r.appspot.com/home';
+            // const fillDataUrl = 'https://kreatoroom-999.uc.r.appspot.com/fill-data';
+
+            const apiUrl = 'http://localhost:8080/login'; //API endpoint URL
+            const registerUrl = 'http://localhost:8080/register'; //register page URL
+            const homeUrl = 'http://localhost:8080/home';
+            const fillDataUrl = 'http://localhost:8080/fill-data';
+
+            function sendGetRequestWithCookie() {
+            // Retrieve the cookie
+            const cookie = document.cookie;
+
+            // Make the GET request to the backend API
+            fetch(apiUrl, {
+                method: 'GET',
+                headers: {
+                'Cookie': cookie,  // Include the cookie in the headers
+                'Content-Type': 'application/json',
+                },
+            })
+                .then(response => response.json())
+                .then(data => {
+                // Handle the API response
+                console.log('API Response:', data);
+                })
+                .catch(error => {
+                // Handle any errors during the request or response handling
+                console.error('Error:', error);
+                });
+            }
+
             function handleCredentialResponse(response) {
                 console.log("Encoded JWT ID token: " + response.credential);
                 const jwtToken = response.credential; // Replace with the actual JWT token you received
@@ -129,7 +158,7 @@
                     client_id: "429389641960-i32mqvl9uphl7p22dk2830ltq510v30p.apps.googleusercontent.com",
                     callback: handleCredentialResponse
                 });
-
+                sendGetRequestWithCookie();
                 google.accounts.id.renderButton(
                     document.getElementById("buttonDiv"),
                     { theme: "outline", size: "large" }  // customization attributes
@@ -156,6 +185,7 @@
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
+                        'Cookie': document.cookie,
                     },
                     body: JSON.stringify(requestBody),
                 })
@@ -190,7 +220,8 @@
                 <div class="atau"><br>atau<br><br></div>
                 <div class="google-button" id="buttonDiv"></div>
                 <div><br><br>
-                    Belum punya akun? Daftar sekarang <a href="https://kreatoroom-999.uc.r.appspot.com/register">di sini</a>
+                    <!-- Belum punya akun? Daftar sekarang <a href="https://kreatoroom-999.uc.r.appspot.com/register">di sini</a> -->
+                    Belum punya akun? Daftar sekarang <a href="http://localhost:8080/register">di sini</a>
                 </div>
             </form>
         </div>

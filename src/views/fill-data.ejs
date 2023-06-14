@@ -50,8 +50,17 @@
         display: block;
       }
 
+      .fill-input input {
+        width: 93.6%;
+        padding: 0.5rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+      }
+      
       .fill-input input[type="date"] {
-        width: 100%;
+        width: 93.6%;
         padding: 0.5rem;
         border: 1px solid #ccc;
         border-radius: 4px;
@@ -112,8 +121,11 @@
     </div>
 
     <script>
-      const apiUrl = 'https://kreatoroom-999.uc.r.appspot.com/fill-data'; // API endpoint URL
-      const redirectUrl = 'https://kreatoroom-999.uc.r.appspot.com/home'; // Redirect URL after successful data submission
+    //   const apiUrl = 'https://kreatoroom-999.uc.r.appspot.com/fill-data'; // API endpoint URL
+    //   const redirectUrl = 'https://kreatoroom-999.uc.r.appspot.com/home'; // Redirect URL after successful data submission
+
+      const apiUrl = 'http://localhost:8080/fill-data'; // API endpoint URL
+      const redirectUrl = 'http://localhost:8080/home'; // Redirect URL after successful data submission
 
       function handleFillData(event) {
         event.preventDefault();

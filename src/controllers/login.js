@@ -12,7 +12,9 @@ pool.on('error', (err) => {
 module.exports = {
   getLoginPage(req, res) {
     const loginPagePath = path.join(__dirname, '../views/login-page');
-    res.render(loginPagePath);
+    const sessionToken = req.cookies['session-token'] || '';
+    
+    res.render(loginPagePath, { cookie: sessionToken });
   },
   postLoginData(req, res) {
     const id_pengguna = nanoid(16);
@@ -24,7 +26,7 @@ module.exports = {
       name: req.body.name || '',
     };
 
-    if (data.google_id.length !== 0) { // if the user is signed in with Google
+    if (data.google_id.length!=0) { //if the user is signed in with google
       pool.getConnection(function (err, connection) {
         if (err) throw err;
         connection.query(
@@ -34,50 +36,21 @@ module.exports = {
             if (err) {
               console.log(err);
             } else if (rows.length > 0) {
+              res.cookie('session-token', data.token);
               res.send({
-                message: 'User already exists',
+                message: 'User already exist',
+                
               });
             } else {
-              // Perform Google authentication and set session token here
-              // You can use the existing code for Google authentication from your original question
-              let token = req.body.token;
-    
-              async function verify() {
-                const ticket = await client.verifyIdToken({
-                  idToken: token,
-                  audience: CLIENT_ID,
-                });
-                const payload = ticket.getPayload();
-                const userid = payload['sub'];
-              }
-              verify()
-              .then(() => {
-                connection.query(
-                  'INSERT INTO user (id_pengguna, token, google_id, email, nama_lengkap) VALUES (?,?,?,?,?)',
-                  [id_pengguna, data.token, data.google_id, data.email, data.name],
-                  (err) => {
-                    if (err) {
-                      console.log(err);
-                      res.send({
-                        status: 400,
-                        success: false,
-                        message: 'Error occurred while adding user data',
-                      });
-                    } else {
-                      // Set session token cookie
-                      res.cookie('session-token', data.token);
-                      
-                      res.send({
-                        status: 200,
-                        success: true,
-                        message: 'User data added successfully',
-                        data: data,
-                      });
-                    }
-                  }
-                );
-              })
-              .catch(console.error);
+              connection.query(
+                'INSERT INTO user (id_pengguna, token, google_id, email, nama_lengkap) VALUES (?,?,?,?,?)',
+                [id_pengguna ,data.token, data.google_id, data.email, data.name]
+              );
+              res.cookie('session-token', data.token);
+              res.send({
+                message: 'User data added successfully',
+                data: data,
+              });
             }
           }
         );

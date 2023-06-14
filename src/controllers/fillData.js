@@ -18,7 +18,11 @@ module.exports = {
 
       pool.getConnection(async function (err, connection) {
         connection.query(
+          'SELECT * FROM user WHERE email = ?',
+          [data.email],
+          async function (err, results) {
 
+          }
         );
         connection.release();
       });

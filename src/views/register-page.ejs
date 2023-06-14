@@ -93,14 +93,19 @@
           <button type="submit" onclick="handleRegister(event)">Register</button>
         </div>
         <div><br /><br />
-          Sudah punya akun? Login <a href="https://kreatoroom-999.uc.r.appspot.com/login">di sini</a>
+          <!-- Sudah punya akun? Login <a href="https://kreatoroom-999.uc.r.appspot.com/login">di sini</a> -->
+          Sudah punya akun? Login <a href="http://localhost:8080/login">di sini</a>
         </div>
       </form>
     </div>
     <script>
-      const apiUrl = 'https://kreatoroom-999.uc.r.appspot.com/register'; // API endpoint URL
-      const loginUrl = 'https://kreatoroom-999.uc.r.appspot.com/login'; // Login page URL
-      const fillDataUrl = 'https://kreatoroom-999.uc.r.appspot.com/fill-data'; // Fill data URL
+    //   const apiUrl = 'https://kreatoroom-999.uc.r.appspot.com/register'; // API endpoint URL
+    //   const loginUrl = 'https://kreatoroom-999.uc.r.appspot.com/login'; // Login page URL
+    //   const fillDataUrl = 'https://kreatoroom-999.uc.r.appspot.com/fill-data'; // Fill data URL
+
+      const apiUrl = 'http://localhost:8080/register'; // API endpoint URL
+      const loginUrl = 'http://localhost:8080/login'; // Login page URL
+      const fillDataUrl = 'http://localhost:8080/fill-data'; // Fill data URL
 
       function handleRegister(event) {
         event.preventDefault();
