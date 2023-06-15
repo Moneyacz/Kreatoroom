@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.login.LoginActivity"
+    tools:context=".ui.activity.LoginActivity"
     android:orientation="vertical"
     android:padding="16dp"
     android:background="@color/green_base"
@@ -132,12 +132,12 @@
             android:id="@+id/toRegister"
             android:text="@string/toReg"
             android:textStyle="italic"
+            android:clickable="true"
+            android:focusable="true"
             app:layout_constraintStart_toEndOf="@+id/registering"
             app:layout_constraintTop_toBottomOf="@id/buttonLogin"
             android:layout_marginStart="5dp"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

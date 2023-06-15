@@ -1,4 +1,4 @@
-package com.dicoding.kreatoroom.ui.detail
+package com.dicoding.kreatoroom.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
