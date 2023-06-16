@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="30dp">
+
+    <TextView
+        android:id="@+id/recovery_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tulis email Anda"
+        style="@style/CustomText"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/email_recovery"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        style="@style/CustomInput"
+        android:inputType="textEmailAddress"
+        android:hint="exemple@email.com"
+        tools:layout_editor_absoluteX="77dp"
+        tools:layout_editor_absoluteY="167dp"
+        android:layout_marginVertical="10dp"/>
+
+    <Button
+        android:id="@+id/send_email"
+        style="@style/PrimaryButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Kirim email" />
+
+</LinearLayout>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/ic_outline_home_24"
+        android:title="Home"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/navigation_part"
+        android:icon="@drawable/ic_baseline_layers_24"
+        android:title="Komponen"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/benchmark_part"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_bar_chart_24"
+        android:title="Benchmarks"
+        android:visible="true"
+        app:showAsAction="ifRoom" />
+
+
+    <item
+        android:id="@+id/navigation_account"
+        android:icon="@drawable/ic_outline_account_circle_24"
+        android:title="Account"
+        app:showAsAction="ifRoom" />
+
+</menu>
