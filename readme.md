@@ -1,1 +1,0 @@
-CPU_and_GPU_Comp -> Game_System_Requirement -> FPS
